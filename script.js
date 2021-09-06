@@ -1,6 +1,7 @@
+
 const addBtn = document.getElementById('add');
 
-const notes = JSON.parse(localStorage.getItem('notes'));
+const notes = JSON.parse(localStorage.getItem('notes')); //บันทึกลงในข้อมูลเครื่อง
 
     if(notes) {
         notes.forEach(note => {
@@ -8,13 +9,13 @@ const notes = JSON.parse(localStorage.getItem('notes'));
         });
     }
 
-    addBtn.addEventListener('click', () => { /*เมื่อกดให้ทำงาน ฟังก์ชั่น addnewnote */
+    addBtn.addEventListener("click", () => { /*เมื่อกดให้ทำงาน ฟังก์ชั่น addnewnote */
         addNewNote();
 });
 
-function addNewNote(text = '') {
-    const note = document.createElement('div');
-    note.classList.add('note');
+function addNewNote(text = "") {
+    const note = document.createElement("div");
+    note.classList.add("note");
 
     note.innerHTML = `
         <div class="notes">
@@ -22,13 +23,13 @@ function addNewNote(text = '') {
             <button class="edit"><i class="fas fa-edit"></i></button>
             <button class="delete"><i class="fas fa-trash-alt"></i></button>
         </div>
-        <div class="main hidden"> </div>
-        <textarea></textarea>   
+        <div class="main ${text ? "" : "hidden"}"> </div>
+        <textarea class="${text ? "hidden" : ""}"></textarea>   
         
         </div>
     `;
 
-    const notesEl = note.querySelector(".notes");
+    
     const editBtn = note.querySelector(".edit");
     const deleteBtn = note.querySelector(".delete");
 
@@ -61,7 +62,7 @@ function addNewNote(text = '') {
 }
 
 function updateLS() {
-    const noteText = document.querySelectorAll('textarea');
+    const notesText = document.querySelectorAll("textarea");
 
     const notes = [];
 
@@ -69,7 +70,7 @@ function updateLS() {
         notes.push(note.value);
     });
 
-    localStorage.setItem('notes', JSON.stringify(notes));
+    localStorage.setItem("notes", JSON.stringify(notes));
 }
 
 
